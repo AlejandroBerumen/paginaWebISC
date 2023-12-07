@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+	<script src="../scripts/mootools.js"></script>
+	<title></title>
+	<style>
+		.nav-link{
+			font-family: Montserrat;
+			color: rgba(255, 255, 255, 1.0) !important;
+			font-size: 160%;
+		}
+		.nav-link:hover{
+			text-decoration: underline;
+			color: rgba(255, 255, 255, 0.5) !important;
+		}
+		.nav-item{
+			margin-right: 90px;
+			margin-bottom: 0.7%;
+			margin-top: 0.7%;
+		}
+		.head{
+			text-align: center;
+			width: 100%;
+			background-color: white;
+		}
+		body{
+			background-color: #eee; 
+		}
+		.footer{
+			position: absolute;
+			width: 100%;
+			height: 25%;
+			background-color: #0B231E;
+		}
+		.tarjeta{
+			position: relative;
+			width: 80%;
+			height: 10%;
+			margin-left: 10%;
+			margin-top: 2%;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 2px 2px 15px 2px #777;
+			transition: 0.3s;
+		}
+		.contenidoTarjeta{
+			position: absolute;
+			margin: 1%;
+			width: 65%;
+			text-align: justify;
+		}
+		.tarjetaImgDerecha .contenidoTarjeta{
+			right: 0;
+			margin-right: 8%;
+		}
+		.tarjetaImgIzquierda .contenidoTarjeta{
+			left: 0;
+			margin-left: 4%;
+		}
+		.tarjetaImgIzquierda .imagenNoticia{
+			margin-left: 78%;
+		}
+		.titulo{
+			font-size: 160%;
+			margin-bottom: 1%;
+		}
+		.imagenNoticia{
+			width: 20%;
+			height: 80%;
+			padding: 1%;
+		}
+		.imagenNoticia img{
+			width: 100%;
+			height: 100%;
+		}
+		.tarjeta:hover{
+			background-color: #cfcfcf;
+			cursor: pointer;
+		}
+		.vermas{
+			display: none;
+			margin-top: 2%;
+			width: 20%;
+		}
+	</style>
+</head>
+<body>
+<div class="head"><img src="../media/img/header.png"></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="noticias.html">Noticias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="galeria.html">Galería</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cargaAcademica.html">Carga académica</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="proyectos.html">Banco de proyectos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contacto.html">Contactanos</a>
+      </li>
+    </ul>
+  </div>
+  </nav>
+
+<div class="cuerpo" id="cuerpo">
+	Cargando...
+</div>
+<center><button type="button" class="btn btn-outline-primary vermas" id="vermas" onclick="verMas()">Ver más...</button></center>
+
+<script type="text/javascript">
+	//var publicaciones = [["", "Publicacion1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>aaaaaaaaaaaaaaaaa", "25/10/2023", ""], ["", "Publicacion2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>aaaaaaaaaaaaaaaaa", "26/10/2023", ""], ["", "Publicacion3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>aaaaaaaaaaaaaaaaa", "27/10/2023", ""], ["", "Publicacion4", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>aaaaaaaaaaaaaaaaa", "28/10/2023", ""]];
+	var publicacionesImpresas = 0;
+	var publicaciones = new Array();
+	var respuesta;
+	if(!localStorage.entrarANoticia){localStorage.setItem("entrarANoticia", "");}
+
+		function eliminarEtiquetas(str) {
+    	if ((str===null) || (str===''))
+        return false;
+    	else
+    		str = str.toString();
+
+    	return str.replace( /(<([^>]+)>)/ig, ' ');
+		}
+
+		function entrarANoticia(id){
+			for(var i=0; i<publicaciones.length; i++){
+				if(publicaciones[i][0]==id)
+					localStorage.entrarANoticia = publicaciones[i][2];
+			}
+			
+			window.location.href = "publicacion.html";
+		}
+
+		function crear(titulo, contenido, imagen, id){
+			
+			if(publicaciones[publicacionesImpresas][2].indexOf("<img")!=-1){
+				imagen = publicaciones[publicacionesImpresas][2].substring(publicaciones[publicacionesImpresas][2].indexOf("<img"));
+				imagen = imagen.substring(0, imagen.indexOf('>'));
+			}else imagen = '<img src="../media/img/img1.jpg">';
+			contenido = eliminarEtiquetas(contenido);
+			if(contenido.length>475) contenido = contenido.substring(0, 475) + "...";
+			if(publicacionesImpresas==0 || publicacionesImpresas%2==0){
+				$('cuerpo').appendHTML('<div class="tarjeta tarjetaImgDerecha" onclick="entrarANoticia(\''+id+'\')"><div class="contenidoTarjeta"><div class="titulo" id="titulo">'+titulo+'</div><div class="textoNoticia" id="textoNoticia">'+contenido+'</div></div><div class="imagenNoticia" id="imagenNoticia">'+imagen+'</div></div>');
+			}else{
+				$('cuerpo').appendHTML('<div class="tarjeta tarjetaImgIzquierda" onclick="entrarANoticia(\''+id+'\')"><div class="contenidoTarjeta"><div class="titulo" id="titulo">'+titulo+'</div><div class="textoNoticia" id="textoNoticia">'+contenido+'</div></div><div class="imagenNoticia" id="imagenNoticia">'+imagen+'</div></div>');
+			}
+			publicacionesImpresas++;
+			if(publicacionesImpresas==publicaciones.length) $('vermas').setStyle('display', 'none');
+		}
+
+		function verMas(){
+			var impresiones = publicaciones.length - publicacionesImpresas;
+			if(impresiones>15){
+				impresiones = 15;
+				$('vermas').setStyle('display', 'block');
+			}
+			for(var i=0; i<impresiones; i++){
+				crear(publicaciones[publicacionesImpresas][1], publicaciones[publicacionesImpresas][2], "", publicaciones[publicacionesImpresas][0]);
+			}
+		}
+
+		const promesa = new Promise(function(completado, error){
+			fetch("http://localhost:3000/publicaciones/publicacion", {
+    		method: "GET", 
+    		mode: "cors", 
+    		cache: "no-cache", 
+    		credentials: "same-origin", 
+    		headers: {
+      			"Content-Type": "application/json"
+    	}}).then((res) => {
+    		return res.json()
+   		}).then((data)=>{
+   			respuesta = data;
+   			completado("1");
+   			return data;
+   		}).catch((e) => console.error(e));
+		}).then(
+			function(value){
+				if(value=="1"){
+					for(var i=0; i<respuesta.length; i++){
+						var registro = new Array();
+						registro.push(respuesta[i]["id"]);
+						registro.push(respuesta[i]["titulo"]);
+						registro.push(respuesta[i]["cuerpo"]);
+						registro.push(respuesta[i]["createdAt"]);
+						registro.push(respuesta[i]["autor"]);
+						publicaciones.push(registro);
+					}
+					$('cuerpo').set('text', '');
+					verMas();
+				}
+			}
+		);
+</script>
+<br><br>
+<div class="footer">
+		a
+</div>
+</body>
+</html>

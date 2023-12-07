@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script src="../scripts/mootools.js"></script>
+	<style>
+		.contenedor{
+			position: relative;
+			background-color: #fff;
+			width: 80%;
+			margin-left: 10%;
+			padding: 2%;
+			border-radius: 10px;
+			font-size: 110%;
+			margin-top: 1.2%;
+		}
+		.imgborrar{
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 1%;
+			width: 5%;
+		}
+		.imgborrar:hover{
+			filter: invert(50%);
+			cursor: pointer;
+		}
+	</style>
+	<title>Solicitudes</title>
+</head>
+<body style="background-color: #eee;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="panel.html" style="padding: 1%; font-size: 175%;">Panel de Administrador</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <span class="navbar-text" style="position: absolute; right: 0; margin-right: 8.5%;">
+    	<div id="nombre"></div>
+    	
+    </span>
+    <img src="../media/img/usuario.png" style="width: 4%; height: auto; filter: invert(100%); position: absolute; right: 0; margin-right: 3%;">
+  </div>
+</nav>
+
+<div class="modal fade" id="myModal" style="margin-top: 10%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Eliminar</h4>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">  	
+    		<form id="eliminar">
+					<div id="modalNombrePublicacion">a</div><br>
+					<button class="btn btn-secondary">Cancelar</button>
+					<button class="btn btn-danger" onclick="confirmarEliminacion()">Eliminar</button>
+				</form>
+      </div>
+    </div>
+  	</div>
+</div>
+
+<div id="cuerpo">
+	Cargando...
+</div>
+
+<script>
+	$('nombre').set('text', '[Nombre]');
+	var idSeleccionada;
+	var registros = new Array();
+	$('nombre').set('text', '[Nombre]');
+
+	function modalEliminar(nombre, id){
+			$('modalNombrePublicacion').set('text', '¿Deseas eliminar la solicitud de '+nombre+'?');
+			idSeleccionada = id;
+			var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+			myModal.toggle();
+		}
+
+	function crear(id, nombre, telefono, correo, consulta, fecha){
+		if(telefono==null) telefono = "(no proporcionado)";
+		if(correo==null) correo = "(no proporcionado)";
+		$('cuerpo').appendHTML('<div class="contenedor"><b>Nombre: </b>'+nombre+'<br><b>Teléfono:</b> '+telefono+'<br><b>Correo:</b> '+correo+'<br><b>Fecha de solicitud:</b> '+fecha+'<br><b>Consulta:</b><br>'+consulta+'<img src="../media/img/borrar.png" class="imgborrar" onclick="modalEliminar(\''+nombre+'\', \''+id+'\')"> </div>');
+	}
+
+	function confirmarEliminacion(){
+		async function postData(url = 'http://localhost:3000/solicitudes/solicitud/'+idSeleccionada, data = {}) {
+ 			const response = await fetch(url, {
+    		method: 'DELETE'
+			});
+ 		}
+ 		postData();
+ 		alert("eliminada");
+	}
+
+		const promesa = new Promise(function(completado, error){
+			fetch("http://localhost:3000/solicitudes/solicitud", {
+    		method: "GET", 
+    		mode: "cors", 
+    		cache: "no-cache", 
+    		credentials: "same-origin", 
+    		headers: {
+      			"Content-Type": "application/json"
+    	}}).then((res) => {
+    		return res.json()
+   		}).then((data)=>{
+   			respuesta = data;
+   			completado("1");
+   			return data;
+   		}).catch((e) => console.error(e));
+		}).then(
+			function(value){
+				if(value=="1"){
+					for(var i=0; i<respuesta.length; i++){
+						var registro = new Array();
+						registro.push(respuesta[i]["id"]);
+						registro.push(respuesta[i]["nombre"]);
+						registro.push(respuesta[i]["numero_telefono"]);
+						registro.push(respuesta[i]["correo"]);
+						registro.push(respuesta[i]["contenido"]);
+						registro.push(respuesta[i]["createdAt"]);
+						registros.push(registro);
+					}
+					$('cuerpo').set('text', '');
+					for(var i=0; i<registros.length; i++){
+						crear(registros[i][0], registros[i][1], registros[i][2], registros[i][3], registros[i][4], registros[i][5]);
+					}
+				}
+			}
+		);
+</script>
+</body>
+</html>

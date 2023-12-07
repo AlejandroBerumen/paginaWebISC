@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+	<script src="../scripts/mootools.js"></script>
+	<style>
+		.tarjeta{
+			position: relative;
+			padding: 1%;
+			background-color: #888;
+			width: 90%;
+			height: 6%;
+			margin: 2%;
+			margin-left: 5%;
+			border-radius: 15px;
+		}
+		.icono{
+			position: absolute;
+			margin-top: 1%;
+			top: 0;
+			right: 0;
+			width: 3.5%;
+		}
+		.icono:hover{
+			filter: invert(100%);
+			cursor: pointer;
+		}
+		.icono2{
+			margin-right: 4%;
+		}
+		.icono1{
+			margin-right: 12%;
+		}
+		.titulo{
+			font-size: 160%;
+			font-weight: bold;
+			font-family: Montserrat;
+		}
+		.fecha{
+			font-size: 110%;
+			font-family: Montserrat;
+			margin-left: 5%;
+		}
+	</style>
+	<title>Publicaciones</title>
+</head>
+<body style="background-color: #eee;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="panel.html" style="padding: 1%; font-size: 175%;">Panel de Administrador</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <span class="navbar-text" style="position: absolute; right: 0; margin-right: 8.5%;">
+    	<div id="nombre"></div>
+    	
+    </span>
+    <img src="../media/img/usuario.png" style="width: 4%; height: auto; filter: invert(100%); position: absolute; right: 0; margin-right: 3%;">
+  </div>
+</nav>
+
+<div class="modal fade" id="myModal" style="margin-top: 10%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Eliminar</h4>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">  	
+    		<form id="eliminar">
+					<div id="modalNombrePublicacion">a</div><br>
+					<button class="btn btn-secondary">Cancelar</button>
+					<button class="btn btn-danger" onclick="confirmarEliminacion()">Eliminar</button>
+				</form>
+      </div>
+    </div>
+  	</div>
+</div>
+
+<div id="cuerpo">
+	Cargando...
+</div>
+
+<script>
+	$('nombre').set('text', '[Nombre]');
+	var idSeleccionada;
+	//IDPublicacion, Titulo, Contenido, Fecha, IDContenido
+	//var publicaciones = [["", "Publicacion1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>", "25/10/2023", ""], ["", "Publicacion2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>", "26/10/2023", ""], ["", "Publicacion3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>", "27/10/2023", ""], ["", "Publicacion4", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend.<img src='img1.jpg'>", "28/10/2023", ""]];
+	var publicaciones = new Array();
+
+	function crear(titulo, fecha, id){
+		$('cuerpo').appendHTML('<div class="tarjeta"><div class="titulo">'+titulo+'</div><div class="fecha">'+fecha+'</div><img class="icono icono1" src="../media/img/editar.png"><img class="icono icono2" src="../media/img/borrar.png" onclick="modalEliminar(\''+titulo+'\', \''+id+'\')"></div>');
+	}
+
+	function modalEliminar(nombre, id){
+			$('modalNombrePublicacion').set('text', '¿Deseas eliminar la publicación "'+nombre+'"?');
+			idSeleccionada = id;
+			var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+			myModal.toggle();
+		}
+
+	function confirmarEliminacion(){
+		async function postData(url = 'http://localhost:3000/publicaciones/publicacion/'+idSeleccionada, data = {}) {
+ 			const response = await fetch(url, {
+    		method: 'DELETE'
+			});
+ 		}
+ 		postData();
+ 		alert("eliminada");
+	}
+
+	const promesa = new Promise(function(completado, error){
+			fetch("http://localhost:3000/publicaciones/publicacion", {
+    		method: "GET", 
+    		mode: "cors", 
+    		cache: "no-cache", 
+    		credentials: "same-origin", 
+    		headers: {
+      			"Content-Type": "application/json"
+    	}}).then((res) => {
+    		return res.json()
+   		}).then((data)=>{
+   			respuesta = data;
+   			completado("1");
+   			return data;
+   		}).catch((e) => console.error(e));
+		}).then(
+			function(value){
+				if(value=="1"){
+					for(var i=0; i<respuesta.length; i++){
+						var registro = new Array();
+						registro.push(respuesta[i]["id"]);
+						registro.push(respuesta[i]["titulo"]);
+						registro.push(respuesta[i]["cuerpo"]);
+						registro.push(respuesta[i]["createdAt"]);
+						registro.push(respuesta[i]["autor"]);
+						publicaciones.push(registro);
+					}
+					$('cuerpo').set('text', '');
+					for(var i=0; i<publicaciones.length; i++){
+						crear(publicaciones[i][1], publicaciones[i][3], publicaciones[i][0]);
+					}
+				}
+			}
+		);
+</script>
+</body>
+</html>

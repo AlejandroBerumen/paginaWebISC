@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script src="../scripts/mootools.js"></script>
+	<style>
+		label{
+			font-size: 150%;
+			color: white;
+			margin-right: 30px;
+		}
+		nav{
+			z-index: 99 !important;
+		}
+		.rd{
+			margin-right: 10px;
+		}
+		.barraLateral{
+			margin-top: -8.6%;
+			position: fixed;
+			z-index: 10;
+			background-color: #999;
+			width: 28%;
+			height: 100%;
+			right: 0;
+			font-size: 275%;
+			padding-left: 3%;
+			padding-top: 9%;
+			font-weight: bold;
+		}
+		.btn{
+			font-size: 90%;
+			width: 100%;
+			margin-top: 8%;
+		}
+		.barraLateral .btn{
+			font-size: 75%;
+			width: 80%;
+			margin-top: 4%;
+		}
+		.headerPublicacion{
+			position: relative;
+		}
+		.btnPublicarPublicacion{
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin-top: 0.5%;
+			margin-right: 2%;
+			width: 15%;
+			font-size: 150%;
+		}
+		.cajas{
+			position: relative;
+			margin: 3%;
+			background-color: #bbb;
+			padding: 1.5%;
+			border-radius: 10px;
+			font-size: 150%;
+			font-weight: bold;
+		}
+		.txt{
+			width: 80%;
+			margin: 1%;
+		}
+		.btnCerrar{
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 5%;
+			margin-top: -1%;
+			margin-right: -1%;
+		}
+		.contenedorI .btnCerrar{
+			width: 12.5%;
+			margin-top:-2.33%;
+			margin-right: -2.33%;
+		}
+		.btnCerrar:hover{
+			filter: brightness(0.8);
+			cursor: pointer;
+		}
+		.contenedorP{
+			padding-top: 1%;
+			width: 72%;
+		}
+		.contenedorPr{
+			padding: 3%;
+		}
+		.contenedorI{
+			padding: 1%;
+		}
+		textarea{
+			width: 90%;
+			margin-left: 1%;
+			margin-top: 0.5%;
+		}
+		button{
+			margin-top: 1% !important;
+		}
+		.vp{
+			margin-left: 2%;
+			font-size: 130%;
+			cursor: pointer;
+			width: 20%;
+			margin-bottom: -2%;
+		}
+		.btnAgregarImagen{
+			float: left;
+			width: 300px;
+			height: 300px;
+			margin: 0.5%;
+			background-color: #6ca7dd;
+			border: 2px blue;
+			text-align: center;
+			font-size: 200%;
+			color: white;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		.recuadroImagen{
+			position: relative;
+			float: left;
+			/*background-image: url("../media/img/img1.jpg");*/
+			background-position: center;
+  		background-repeat: no-repeat;
+  		background-size: cover;
+			background-color: #999;
+			width: 300px;
+			height: 300px;
+			margin: 0.5%;
+		}
+		.nombreImagen{
+			position: absolute;
+			bottom: 0;
+			padding: 5px;
+			width: 100%;
+			height: 37px;
+			color: white;
+			background-color: rgba(0, 0, 0, 0.6);
+		}
+		.imgImg{
+			width: 60%;
+			margin: 20px;
+			filter: invert(100%);
+		}
+		.contenedorPr .titulo{
+			font-size: 230%;
+			margin-bottom: 1%;
+			font-size: bold;
+		}
+		.contenedorPr form label{
+			font-size: 130%;
+			color: black;
+			margin-top: 1%;
+		}
+		.contenedorPr form input{
+			width: 40%;
+			border-radius: 10px;
+		}
+		.contenedorPr form textarea{
+			border-radius: 10px;
+		}
+		.contenedorPr form select{
+			width: 20%;
+		}
+		.botonAgregarDocumento{
+			background-color: #aa8e57;
+			padding: 0.5%;
+			width: 15%;
+			text-align: center;
+			font-size: 120%;
+			border-radius: 12px;
+			margin-top: 3%;
+		}
+		.botonAgregarDocumento img{
+			width: 14%;
+			height: 14%;
+		}
+		.botonAgregarDocumento:hover{
+			cursor: pointer;
+			background-color: #ccaf79;
+		}
+		.contenedorPr .btn{
+			position: absolute;
+			font-size: 175%;
+			width: 12%;
+			top: 0;
+			right: 0;
+			margin-right: 12%;
+			margin-top: 14%;
+		}
+		.publicarImagenes{
+			position: absolute;
+			display: none;
+			top: 0;
+			right: 0;
+			padding-top: 1%;
+			width: 15%;
+			height: 8%;
+			font-size: 133%;
+			font-weight: bold;
+		}
+		.recuadroDocumento{
+			position: relative;
+			float: left;
+			width: 380px;
+			height: 100px;
+			background-color: #E8DE95;
+			margin-top: 1%;
+			margin-right: 1%;
+			box-sizing: border-box; 
+      border: 2px solid gray; 
+		}
+		.recuadroDocumento img{
+			height: 70%;
+			margin-top: 3%;
+			margin-right: 2%;
+			float: left;
+		}
+		.nombreRecDoc{
+			float: left;
+			font-size: 110%;
+			width: 290px;
+			margin-top: 2%;
+		}
+	</style>
+	<title>Publicar</title>
+</head>
+<body style="background-color: #eee;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="panel.html" style="padding: 1%; font-size: 175%;">Panel de Administrador</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <span class="navbar-text" style="position: absolute; right: 0; margin-right: 8.5%;">
+    	<div id="nombre"></div>
+    	
+    </span>
+    <img src="../media/img/usuario.png" style="width: 4%; height: auto; filter: invert(100%); position: absolute; right: 0; margin-right: 3%;">
+  </div>
+
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="panel.html" style="margin-left: 2%; margin-right: 2%; font-size: 175%;">Agregar:</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    	<form>
+      <input type="radio" class="rd" id="rdPublicacion" name="agregar" value="rdPublicacion" onclick="cambiarEleccion(1)" checked><label for="rdPublicacion">Publicación</label>
+      <input type="radio" class="rd" id="rdFotografia" name="agregar" value="rdFotografia" onclick="cambiarEleccion(2)"><label for="rdFotografia">Fotografía</label>
+      <input type="radio" class="rd" id="rdProyecto" name="agregar" value="rdProyecto" onclick="cambiarEleccion(3)"><label for="rdProyecto">Proyecto</label>
+      </form>
+  </div>
+</nav>
+
+<div class="barraLateral" id="barraLateral">
+	Nuevo
+	<br><div class="btn btn-light" onclick="insertarP(1)">Título</div>
+	<br><div class="btn btn-light" onclick="insertarP(2)">Subtítulo</div>
+	<br><div class="btn btn-light" onclick="insertarP(3)">Párrafo</div>
+	<br><div class="btn btn-light" onclick="insertarP(4)">Imágen</div>
+	<br><div class="btn btn-light" onclick="insertarP(5)">Enlace</div>
+	<br><div class="btn btn-light" onclick="insertarP(6)">Video de Youtube</div>
+	<br>
+</div>
+
+<div class="contenedorP" id="contenedorP">
+	<div class="headerPublicacion">
+		<div class="vp" onclick="vistaPrevia()"><img src="../media/img/ojo.png" style="width: 20%;">Vista Previa</div>
+		<div class="btn btn-success btnPublicarPublicacion" onclick="crearPublicacion()">Publicar</div>
+	</div>
+	<div class="cajas cajaTitulo p1">Título<br><input type="text" class="txt"></div>
+</div>
+
+<div class="modal fade" id="myModal" style="margin-top: 10%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Agregar Foto</h4>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">  	
+					Nombre:<br>
+					<input type="text" id="cajaNombreFoto" name="" style="width: 90%;"><br><br>
+					Descripción:<br>
+					<textarea rows="4" style="width: 95%;" id="cajaDescFoto"></textarea><br><br>
+					<input type="file" id="subirFoto2" accept="image/*" style="display: none;"><button class="btn btn-secondary" id="btnSubirFoto2">Subir Foto</button><br><div id="avisoFotos1" style="color: red; display: none;">Seleccione solo una foto a la vez</div><br><div id="avisoFotos2" style="color: red; display: none;">Rellene los campos necesarios</div>
+					<button class="btn btn-success" onclick="agregarFoto()">Agregar</button>
+      </div>
+    </div>
+  	</div>
+</div>
+<div class="contenedorI" id="contenedorI">
+	<div class="btnAgregarImagen" onclick="modalAgregarFoto()"><img src="../media/img/imagen.png" class="imgImg"><br>Agregar</div><div class="btn btn-success publicarImagenes" id="btnPublicarImagenes" onclick="subirImagenes()">Publicar</div>
+</div>
+<div class="contenedorPr" id="contenedorPr">
+	<div class="titulo">Agregar Proyecto</div>
+	<form>
+		<label>Nombre del proyecto:</label><input type="text" name="nombreProyecto" class="cajaNombreProyecto" id="cajaNombreProyecto">
+		<br><label>Tipo:</label>
+		<select name="tipoProyecto" id="tipoProyecto">
+  		<option value="Servicio social">Servicio Social</option>
+  		<option value="Residencias">Residencias Profesionales</option>
+  		<option value="Innovación">Innovación</option>
+  		<option value="Otro..." selected>Otro...</option>
+		</select>
+		<br><label>Periodo de realización:</label>
+		<select name="periodoProyecto" id="periodoProyecto">
+			<script type="text/javascript">
+				const mes = new Date().getMonth();
+				const anio = new Date().getYear();
+				for(var i=0; i<=(anio-103); i++){
+					if(mes>=7)
+						document.write('<option value="'+i+'">Agosto-Diciembre '+(1900+anio-i)+'</option>');
+					document.write('<option value="'+i+'">Enero-Junio '+(1900+anio-i)+'</option>');
+				}
+			</script>
+		</select>
+		<br><label>Descripción:</label><br><textarea cols="100" rows="5" id="cajaDescProyecto"></textarea>
+	</form>
+	<input type="file" id="subirDocumento" multiple accept=".pdf" style="display: none;">
+	<div class="botonAgregarDocumento" id="botonAgregarDocumento"><img src="../media/img/publicacion.png">Agregar Documento</div>
+	<div class="documentosAgregados" id="documentosAgregados"></div>
+	<div class="btn btn-success" onclick="publicarProyecto()">Publicar</div>
+</div>
+
+
+<script>
+	$('nombre').set('text', 'dek.vieri.glu');
+	var contP = 2;
+	$('contenedorI').setStyle('display', 'none');
+	$('contenedorPr').setStyle('display', 'none');
+
+	function cambiarEleccion(cual){
+		switch(cual){
+			case 1:
+				$('barraLateral').setStyle('display', 'block');
+				$('contenedorP').setStyle('display', 'block');
+				$('contenedorI').setStyle('display', 'none');
+				$('contenedorPr').setStyle('display', 'none');
+			break;
+			case 2:
+				$('barraLateral').setStyle('display', 'none');
+				$('contenedorP').setStyle('display', 'none');
+				$('contenedorI').setStyle('display', 'block');
+				$('contenedorPr').setStyle('display', 'none');
+			break;
+			case 3:
+				$('barraLateral').setStyle('display', 'none');
+				$('contenedorP').setStyle('display', 'none');
+				$('contenedorI').setStyle('display', 'none');
+				$('contenedorPr').setStyle('display', 'block');
+			break;
+		}
+	}
+
+
+	//=================================FUNCIONES PARA LAS PUBLICACIONES==========================================
+
+		var btnImgPubliClick = 0;
+		function insertarP(que){
+			switch(que){
+				case 1:
+					$('contenedorP').appendHTML('<div class="cajas cajaTitulo p'+contP+'">Título<br><input type="text" class="txt"><img src="../media/img/cerrar.png" class="btnCerrar" onclick="eliminarP('+contP+')"></div>');
+					contP++;
+				break;
+				case 2:
+					$('contenedorP').appendHTML('<div class="cajas cajaSubtitulo p'+contP+'">Subtítulo<br><input type="text" class="txt"><img src="../media/img/cerrar.png" class="btnCerrar" onclick="eliminarP('+contP+')"></div>');
+					contP++;
+				break;
+				case 3:
+					$('contenedorP').appendHTML('<div class="cajas cajaParrafo p'+contP+'">Párrafo<br><textarea cols="100" rows="5"></textarea><img src="../media/img/cerrar.png" class="btnCerrar" onclick="eliminarP('+contP+')"></div>');
+					contP++;
+				break;
+				case 4:
+					$('contenedorP').appendHTML('<div class="cajas cajaImagen p'+contP+'">Subir Imágen<input type="file" id="subirFoto1" accept="image/*" style="display: none;"><button type="button" class="btn btn-secondary" id="btnImgPubli'+contP+'" onclick="btnImgPubliClickCambiarValorIjuesu('+contP+')">Seleccionar Archivo</button><img src="../media/img/cerrar.png" class="btnCerrar" onclick="eliminarP('+contP+')"></div>');
+					$('btnImgPubli'+contP).addEventListener(
+  						"click", (e) => {
+      					$('subirFoto1').click();
+    					e.preventDefault();
+  				}, false,);
+  				$('subirFoto1').addEventListener("change", agregarImagenPublicacion, false);
+					contP++;
+				break;
+			}
+		}
+
+		function btnImgPubliClickCambiarValorIjuesu(cual){
+			btnImgPubliClick = cual;
+		}
+
+		function eliminarP(cual){
+			var cualP = "p" + cual;
+			$$('.'+cualP)[0].dispose();
+		}
+
+		function vistaPrevia(){
+			var cajas = $$('.cajas');
+			var publicacion = "";
+			for(var i=0; i<cajas.length; i++){
+				if(cajas[i].hasClass('cajaTitulo')){
+					publicacion = publicacion + "<h1>"+cajas[i].getChildren('input').get('value')+"</h1>";
+				}else if(cajas[i].hasClass('cajaSubtitulo')){
+					publicacion = publicacion + "<h2>"+cajas[i].getChildren('input').get('value')+"</h2>";
+				}else if(cajas[i].hasClass('cajaParrafo')){
+					var contenidoParrafo = cajas[i].getChildren('textarea').get('value') + "";
+					contenidoParrafo = contenidoParrafo.replaceAll('\n', '<br>');
+					publicacion = publicacion + "<div class='parrafo'>"+contenidoParrafo+"</div>";
+				}else if(cajas[i].hasClass('cajaImagen')){
+					publicacion = publicacion + "<img src='"+"../media/img/img2.jpg"+"'>";
+				}
+			}
+			localStorage.setItem("vp", publicacion);
+			window.location.href = "vistaprevia.html";
+		}
+
+		var imagenesPublicacionData = new Array();
+		async function crearPublicacion(){
+			var titulo = $$('.cajaTitulo')[0].getChildren('input').get('value') + "";
+			var publicacion = "";
+			var cajas = $$('.cajas');
+			var cajasHM = new Map();
+			for(var i=0; i<cajas.length; i++){
+				cajasHM.set(i, cajas[i]);
+			}
+			var imgCont = 0;
+			var ruta = "";
+			for await(const [i, value] of cajasHM/*var i=0; i<cajas.length; i++*/){
+				if(value.hasClass('cajaTitulo')){
+					publicacion = publicacion + "<h1>"+value.getChildren('input').get('value')+"</h1>";
+				}else if(value.hasClass('cajaSubtitulo')){
+					publicacion = publicacion + "<h2>"+value.getChildren('input').get('value')+"</h2>";
+				}else if(value.hasClass('cajaParrafo')){
+					var contenidoParrafo = value.getChildren('textarea').get('value') + "";
+					contenidoParrafo = contenidoParrafo.replaceAll('\n', '<br>');
+					publicacion = publicacion + "<div class='parrafo'>"+contenidoParrafo+"</div>";
+				}else if(value.hasClass('cajaImagen')){
+					//subir imagen
+					async function postData(url, data) {
+  					const response = await fetch(url, {
+   						method: 'POST', 
+    					mode: 'cors', 
+    					cache: 'no-cache', 
+    					credentials: 'same-origin', 
+    					headers: {
+      					'Authorization': 'Bearer {token}'
+    					},
+    					redirect: 'follow',
+    					referrerPolicy: 'no-referrer',
+    					body: data
+  					}).then((res)=>{
+  						return res.json();
+  					}).then((data)=>{
+  						ruta = data;
+  						ruta = "../scripts/api" + ruta.substring(1);
+							imgCont++;
+							publicacion = publicacion + '<img src="'+ruta+'">';
+  					});
+					}
+					var formData = new FormData();
+					formData.append("file", imagenesPublicacionData[imgCont]);
+					await postData('http://localhost:3000/publicaciones/publicacion/imagenPublicacion', formData);
+				}
+			}
+			var usuario = $('nombre').get('text');
+			async function postData(url = 'http://localhost:3000/publicaciones/publicacion/', data = {"titulo": titulo, "cuerpo": publicacion, "nombre_usuario": usuario}) {
+  			const response = await fetch(url, {
+   				method: 'POST', 
+    			mode: 'cors', 
+    			cache: 'no-cache', 
+    			credentials: 'same-origin', 
+    			headers: {
+      			'Content-Type': 'application/json',
+      			'Authorization': 'Bearer {token}'
+    			},
+    			redirect: 'follow',
+    			referrerPolicy: 'no-referrer', 
+    			body: JSON.stringify(data)
+  			});
+  			return response.json();
+			}
+			await postData();
+			alert("subida");
+		}
+
+  	function agregarImagenPublicacion(cual){
+  		archivosIP = this.files;
+  		if(archivosIP.length==1){
+  			$('btnImgPubli'+btnImgPubliClick).set('text', 'Seleccionada');
+  			$('btnImgPubli'+btnImgPubliClick).setStyle('background-color', '#0D6EFD');
+  			imagenesPublicacionData.push(archivosIP[0]);
+  		}else if(archivosIP.length>1){
+  			alert("Ingrese solo un archivo a la vez.")
+  		}
+  	}
+
+
+		//==========================FUNCIONES PARA LAS IMAGENES==========================================
+
+
+		var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+		//index, imagen, nombre, descripcion, nombreAdmin
+		var imagenesData = new Array();
+		var archivosI="";
+		var imagenIndex = 0;
+		function modalAgregarFoto(){
+			$('btnSubirFoto2').set('text', 'Subir Foto');
+  		$('btnSubirFoto2').setStyle('background-color', '#6c757d');
+  		$('avisoFotos1').setStyle('display', 'none');
+  		$('avisoFotos2').setStyle('display', 'none');
+  		$('cajaNombreFoto').set('value', '');
+  		$('cajaDescFoto').set('value', '');
+  		myModal.toggle();
+		}
+
+		$('btnSubirFoto2').addEventListener(
+  		"click", (e) => {
+    			if ($('subirFoto2') && $('btnSubirFoto2').get('text')!="Seleccionada") {
+      			$('subirFoto2').click();
+    			}
+    		e.preventDefault();
+  	}, false,);
+  	$('subirFoto2').addEventListener("change", manejarFotos, false);
+
+  	function manejarFotos(){
+  		archivosI = this.files;
+  		if(archivosI.length==1){
+  			$('btnSubirFoto2').set('text', 'Seleccionada');
+  			$('btnSubirFoto2').setStyle('background-color', '#0D6EFD');
+  			$('avisoFotos1').setStyle('display', 'none');
+  			$('avisoFotos2').setStyle('display', 'none');
+  		}else if(archivosI.length>1){
+  			$('avisoFotos1').setStyle('display', 'block');
+  		}
+  	}
+
+  	function agregarFoto(){
+  		if(!archivosI.length || $('cajaNombreFoto').get('value').toString().replaceAll(' ', '').length == 0 || $('subirFoto2') && $('btnSubirFoto2').get('text')=="Subir Foto"){
+  			$('avisoFotos2').setStyle('display', 'block');
+  		}else if(archivosI.length>1){
+  			$('avisoFotos1').setStyle('display', 'block');
+  		}else{
+  			$('avisoFotos1').setStyle('display', 'none');
+  			$('avisoFotos2').setStyle('display', 'none');
+  			var tituloAMostrar = $('cajaNombreFoto').get('value').toString();
+  			if(tituloAMostrar.length>39)
+  				tituloAMostrar = tituloAMostrar.substring(0, 36) + "...";
+  			$('contenedorI').appendHTML('<div class="recuadroImagen rimg'+imagenIndex+'"><div class="nombreImagen">'+tituloAMostrar+'</div><img src="../media/img/cerrar.png" class="btnCerrar" onclick="eliminarRecuadroImagen('+imagenIndex+')"></div>');
+  			const img = URL.createObjectURL(archivosI[0]);
+  			$$('.rimg'+imagenIndex)[0].setStyle('background-image', 'url('+img+')');
+  			var nuevaImagenData = new Array();
+  			nuevaImagenData.push(imagenIndex);
+  			nuevaImagenData.push(archivosI[0]);
+  			nuevaImagenData.push($('cajaNombreFoto').get('value').toString());
+  			nuevaImagenData.push($('cajaDescFoto').get('value').toString());
+  			nuevaImagenData.push($('nombre').get('text'));
+  			imagenesData.push(nuevaImagenData);
+  			imagenIndex++;
+  			myModal.hide();
+  			$('btnPublicarImagenes').setStyle('display', 'block');
+  		}
+  	}
+
+  	function eliminarRecuadroImagen(cual){
+  		$$('.rimg'+cual)[0].dispose();
+  		for(var i=0; i<imagenesData.length; i++){
+  			if(imagenesData[i][0]==cual)
+  				imagenesData.splice(i, 1);
+  		}
+  		if(imagenesData.length==0)
+  			$('btnPublicarImagenes').setStyle('display', 'none');
+  	}
+
+  	function subirImagenes(){
+  		async function postData(url, data) {
+  			const response = await fetch(url, {
+   				method: 'POST', 
+    			mode: 'cors', 
+    			cache: 'no-cache', 
+    			credentials: 'same-origin', 
+    			headers: {
+      			'Authorization': 'Bearer {token}'
+    			},
+    			redirect: 'follow',
+    			referrerPolicy: 'no-referrer',
+    			body: data
+  			});
+			}
+			for(var i=0; i<imagenesData.length; i++){
+				//index, imagen, nombre, descripcion, nombreAdmin
+				const formData = new FormData();
+				formData.append("nombre", imagenesData[i][2]);
+				formData.append("descripcion", imagenesData[i][3]);
+				formData.append("nombre_usuario", imagenesData[i][4]);
+  			formData.append("file", imagenesData[i][1]);
+  			postData('http://localhost:3000/imagenesGaleria/imagenGaleria', formData);
+  		}
+  		alert("subidas");
+  	}
+
+
+  	//===========================================FUNCIONES PARA LOS PROYECTOS===============================
+
+
+  	var archivosP = "";
+  	var documentosData = new Array()
+  	$('botonAgregarDocumento').addEventListener(
+  		"click", (e) => {
+      			$('subirDocumento').click();
+    		e.preventDefault();
+  	}, false,);
+  	$('subirDocumento').addEventListener("change", agregarDocumento, false);
+
+  	function agregarDocumento(){
+  		archivosP = this.files;
+  		//<div class="recuadroDocumento"><img src="../media/img/pdflogo.png"><div class="nombreRecDoc">Nombre</div></div>
+  		if(archivosP.length==1){
+  			var nombreAMostrar = archivosP[0].name;
+  			if(nombreAMostrar.length>30) nombreAMostrar = nombreAMostrar.substring(0,29) + "<br>" + nombreAMostrar.substring(29); 
+  			else if(nombreAMostrar.length>30) nombreAMostrar = nombreAMostrar.substring(0,29) + "<br>" + nombreAMostrar.substring(29, 58) + "<br>" + nombreAMostrar.substring(58); 
+  			$('documentosAgregados').appendHTML('<div class="recuadroDocumento"><img src="../media/img/pdflogo.png"><div class="nombreRecDoc">'+nombreAMostrar+'</div></div>');
+  			documentosData.push(archivosP[0]);
+  		}else if(archivosP.length>1){
+  			alert("Ingrese solo un archivo a la vez.")
+  		}
+  	}
+
+  	function publicarProyecto(){
+  		var periodo = $('periodoProyecto').options[$('periodoProyecto').selectedIndex].text;
+  		var descripcion = $('cajaDescProyecto').get('value');
+  		descripcion = descripcion.replaceAll("\n", "<br>");
+  		async function postData(url = 'http://localhost:3000/proyectos/proyecto', data = {"nombre": $('cajaNombreProyecto').get('value'), "tipo": $('tipoProyecto').get('value'), "descripcion": descripcion, "periodo": periodo,"nombre_usuario": $('nombre').get('text')}) {
+  			const response = await fetch(url, {
+   				method: 'POST', 
+    			mode: 'cors', 
+    			cache: 'no-cache', 
+    			credentials: 'same-origin', 
+    			headers: {
+      			'Content-Type': 'application/json',
+      			'Authorization': 'Bearer {token}'
+    			},
+    			redirect: 'follow',
+    			referrerPolicy: 'no-referrer', 
+    			body: JSON.stringify(data)
+  			}).then((res) => {
+    			return res.json()
+   			}).then(async(data)=>{
+  				var datosProyecto = data;
+  				const formData = new FormData();
+  				formData.append("id", datosProyecto["id"]);
+  				for(var i=0; i<documentosData.length; i++){
+  					formData.append("file", documentosData[i]);
+  					await fetch("http://localhost:3000/documentos/documento/", {
+    					method: "POST",
+    					body: formData
+  					});
+  				}
+  			});
+  			alert("creado");
+			}
+			postData();
+  	}
+</script>
+</body>
+</html>

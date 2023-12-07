@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+	<script src="../scripts/mootools.js"></script>
+	<title></title>
+	<style>
+		.nav-link{
+			font-family: Montserrat;
+			color: rgba(255, 255, 255, 1.0) !important;
+			font-size: 160%;
+		}
+		.nav-link:hover{
+			text-decoration: underline;
+			color: rgba(255, 255, 255, 0.5) !important;
+		}
+		.nav-item{
+			margin-right: 90px;
+			margin-bottom: 0.7%;
+			margin-top: 0.7%;
+		}
+		.head{
+			text-align: center;
+			width: 100%;
+			background-color: white;
+		}
+		body{
+			background-color: #e8de95; 
+		}
+		.footer{
+			position: absolute;
+			width: 100%;
+			height: 25%;
+			background-color: #0B231E;
+		}
+		.contenedor{
+			margin: 4%;
+		}
+		.titulo{
+			font-family: Montserrat;
+			font-size: 250%;
+		}
+		.buscador{
+			position: absolute;
+			right: 0;
+			font-family: Montserrat;
+			font-size: 133%;
+			margin-top: -2.25%;
+		}
+		.buscar{
+			width: 3.5%;
+			margin-left: 2%;
+			margin-right: 2%;
+		}
+		.buscar:hover{
+			filter: invert(60%);
+			cursor: pointer;
+		}
+		.buscador input{
+			border-radius: 15px;
+			margin-left: 1.5%;
+		}
+		.contenedorProyecto{
+			position: relative;
+			background-color: #eee;
+			padding: 0.1%;
+			width: 90%;
+			margin-top: 3%;
+			margin-left: 2%;
+			border-radius: 10px;
+		}
+		.nombreProyecto{
+			margin: 2.5%;
+			font-size: Montserrat;
+			font-size: 180%;
+		}
+		.descProyecto{
+			margin: 2.5%;
+			font-size: Montserrat;
+			font-size: 100%;
+		}
+		.fechaProyecto{
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 2%;
+		}
+	</style>
+</head>
+<body>
+<div class="head"><img src="../media/img/header.png"></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="../index.html">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="noticias.html">Noticias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="galeria.html">Galería</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="cargaAcademica.html">Carga académica</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="proyectos.html">Banco de proyectos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contacto.html">Contactanos</a>
+      </li>
+    </ul>
+  </div>
+  </nav>
+
+ <div class="contenedor" id="contenedor">
+ 	<div class="titulo">Banco de proyectos</div>
+ 	<div class="buscador">
+ 		Búsqueda:
+ 		<input type="text">
+ 		<img src="../media/img/buscar.png" class="buscar">
+ 		<select name="select">
+  		<option value="null" selected> - -</option>
+  		<option value="ss">Servicio Social</option>
+  		<option value="residencias">Residencias Profesionales</option>
+  		<option value="innovacion">Innovación</option>
+  		<option value="otro">Otro...</option>
+		</select>
+ 	</div>
+
+ 	
+ </div>
+
+<script>
+	var proyectos = [["", "Proyecto 1", "", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend. Maecenas pharetra lorem non justo mattis, quis commodo sapien malesuada. Pellentesque et nisi eget dui cursus porta.", "dd/mm/aaaa", ""], ["", "Proyecto 2", "", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend. Maecenas pharetra lorem non justo mattis, quis commodo sapien malesuada. Pellentesque et nisi eget dui cursus porta.", "dd/mm/aaaa", ""], ["", "Proyecto 3", "", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend. Maecenas pharetra lorem non justo mattis, quis commodo sapien malesuada. Pellentesque et nisi eget dui cursus porta.", "dd/mm/aaaa", ""], ["", "Proyecto 4", "", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum metus est, id varius mi molestie ut. Sed blandit fermentum vulputate. Fusce nec mi laoreet, semper justo eu, pretium nibh. Nulla lobortis justo erat, nec sagittis diam blandit ut. Phasellus imperdiet condimentum lorem, blandit scelerisque nulla tempor eu. Aenean efficitur diam sit amet tempor rhoncus. Sed euismod id dolor non eleifend. Maecenas pharetra lorem non justo mattis, quis commodo sapien malesuada. Pellentesque et nisi eget dui cursus porta.", "dd/mm/aaaa", ""]];
+
+	function crear(nombre, fecha, descripcion){
+		$('contenedor').appendHTML('<div class="contenedorProyecto" di="contenedorProyecto"><div class="nombreProyecto" id="nombreProyecto">'+nombre+'</div><div class="fechaProyecto" id="fechaProyecto">'+fecha+'</div><div class="descProyecto" id="descProyecto">'+descripcion+'</div></div>');
+	}
+
+	for(var i=0; i<proyectos.length; i++){
+		crear(proyectos[i][1], proyectos[i][4], proyectos[i][3]);
+	}
+</script>
+
+<div class="footer">
+		a
+	</div>
+</body>
+</html>

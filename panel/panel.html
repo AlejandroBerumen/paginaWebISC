@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script src="../scripts/mootools.js"></script>
+	<style>
+		.btn{
+			position: relative;
+			width: 280px;
+			height: 280px;
+			margin: 3%;
+			border-radius: 25px;
+		}
+		.btn:hover{
+			background-color: rgba(210, 210, 210, 1.0);
+		}
+		.btnimg{
+			width: 80%;
+			filter: invert(100%);
+			margin: 3%;
+		}
+		.btntxt{
+			font-size: 150%;
+			color: white;
+			margin-bottom: 100px;
+		}
+		.btnimg2{
+			width: 80%;
+			margin: 3%;
+		}
+		.btntxt2{
+			font-size: 150%;
+			color: blackl;
+			margin-bottom: 100px;
+		}
+		.b1{
+			background-color: green;
+		}
+		.b2{
+			background-color: blue;
+		}
+		.b3{
+			background-color: red;
+		}
+		.b4{
+			background-color: yellow;
+		}
+		.b5{
+			background-color: black;
+		}
+	</style>
+	<title>Panel de Administrador</title>
+</head>
+<body style="background-color: #eee;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#" style="padding: 1%; font-size: 175%;">Panel de Administrador</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      
+    </ul>
+    <span class="navbar-text" style="position: absolute; right: 0; margin-right: 8.5%;">
+    	<div id="nombre"></div>
+    	
+    </span>
+    <img src="../media/img/usuario.png" style="width: 4%; height: auto; filter: invert(100%); position: absolute; right: 0; margin-right: 3%;">
+  </div>
+</nav>
+
+<center>
+<div class="btn b1" onclick="cambiarPantalla('publicar.html')"><img src="../media/img/plus.png" class="btnimg"><div class="btntxt">Publicar</div></div>
+<div class="btn b2" onclick="cambiarPantalla('publicaciones.html')"><img src="../media/img/publicacion.png" class="btnimg"><div class="btntxt">Publicaciones</div></div>
+<div class="btn b3" onclick="cambiarPantalla('fotos.html')"><img src="../media/img/imagen.png" class="btnimg"><div class="btntxt">Fotos</div></div><br>
+<div class="btn b4" onclick="cambiarPantalla('proyectos.html')"><img src="../media/img/foco.png" class="btnimg2"><div class="btntxt2">Proyectos</div></div>
+<div class="btn b5" onclick="cambiarPantalla('solicitudes.html')"><img src="../media/img/solicitud.png" class="btnimg"><div class="btntxt">Solicitudes</div></div>
+</center>
+
+
+<script>
+	$('nombre').set('text', '[Nombre]');
+	function cambiarPantalla(ruta){
+		window.location.href = ruta;
+	}
+</script>
+</body>
+</html>
