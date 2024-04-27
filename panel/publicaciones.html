@@ -109,7 +109,7 @@
 		}
 
 	function confirmarEliminacion(){
-		async function postData(url = 'http://localhost:3000/publicaciones/publicacion/'+idSeleccionada, data = {}) {
+		async function postData(url = 'https://apipwebisc.onrender.com/publicaciones/publicacion/'+idSeleccionada, data = {}) {
  			const response = await fetch(url, {
     		method: 'DELETE'
 			});
@@ -119,7 +119,7 @@
 	}
 
 	const promesa = new Promise(function(completado, error){
-			fetch("http://localhost:3000/publicaciones/publicacion", {
+			fetch("https://apipwebisc.onrender.com/publicaciones/publicacion", {
     		method: "GET", 
     		mode: "cors", 
     		cache: "no-cache", 
