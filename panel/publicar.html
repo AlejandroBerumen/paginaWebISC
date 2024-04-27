@@ -471,11 +471,11 @@
 					}
 					var formData = new FormData();
 					formData.append("file", imagenesPublicacionData[imgCont]);
-					await postData('http://localhost:3000/publicaciones/publicacion/imagenPublicacion', formData);
+					await postData('https://apipwebisc.onrender.com/publicaciones/publicacion/imagenPublicacion', formData);
 				}
 			}
 			var usuario = $('nombre').get('text');
-			async function postData(url = 'http://localhost:3000/publicaciones/publicacion/', data = {"titulo": titulo, "cuerpo": publicacion, "nombre_usuario": usuario}) {
+			async function postData(url = 'https://apipwebisc.onrender.com/publicaciones/publicacion/', data = {"titulo": titulo, "cuerpo": publicacion, "nombre_usuario": usuario}) {
   			const response = await fetch(url, {
    				method: 'POST', 
     			mode: 'cors', 
@@ -605,7 +605,7 @@
 				formData.append("descripcion", imagenesData[i][3]);
 				formData.append("nombre_usuario", imagenesData[i][4]);
   			formData.append("file", imagenesData[i][1]);
-  			postData('http://localhost:3000/imagenesGaleria/imagenGaleria', formData);
+  			postData('https://apipwebisc.onrender.com/imagenesGaleria/imagenGaleria', formData);
   		}
   		alert("subidas");
   	}
@@ -641,7 +641,7 @@
   		var periodo = $('periodoProyecto').options[$('periodoProyecto').selectedIndex].text;
   		var descripcion = $('cajaDescProyecto').get('value');
   		descripcion = descripcion.replaceAll("\n", "<br>");
-  		async function postData(url = 'http://localhost:3000/proyectos/proyecto', data = {"nombre": $('cajaNombreProyecto').get('value'), "tipo": $('tipoProyecto').get('value'), "descripcion": descripcion, "periodo": periodo,"nombre_usuario": $('nombre').get('text')}) {
+  		async function postData(url = 'https://apipwebisc.onrender.com/proyectos/proyecto', data = {"nombre": $('cajaNombreProyecto').get('value'), "tipo": $('tipoProyecto').get('value'), "descripcion": descripcion, "periodo": periodo,"nombre_usuario": $('nombre').get('text')}) {
   			const response = await fetch(url, {
    				method: 'POST', 
     			mode: 'cors', 
@@ -662,7 +662,7 @@
   				formData.append("id", datosProyecto["id"]);
   				for(var i=0; i<documentosData.length; i++){
   					formData.append("file", documentosData[i]);
-  					await fetch("http://localhost:3000/documentos/documento/", {
+  					await fetch("https://apipwebisc.onrender.com/documentos/documento/", {
     					method: "POST",
     					body: formData
   					});
