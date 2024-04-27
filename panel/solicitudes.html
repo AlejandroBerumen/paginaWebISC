@@ -93,7 +93,7 @@
 	}
 
 	function confirmarEliminacion(){
-		async function postData(url = 'http://localhost:3000/solicitudes/solicitud/'+idSeleccionada, data = {}) {
+		async function postData(url = 'https://apipwebisc.onrender.com/solicitudes/solicitud/'+idSeleccionada, data = {}) {
  			const response = await fetch(url, {
     		method: 'DELETE'
 			});
@@ -103,7 +103,7 @@
 	}
 
 		const promesa = new Promise(function(completado, error){
-			fetch("http://localhost:3000/solicitudes/solicitud", {
+			fetch("https://apipwebisc.onrender.com/solicitudes/solicitud", {
     		method: "GET", 
     		mode: "cors", 
     		cache: "no-cache", 
